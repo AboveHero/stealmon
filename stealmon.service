@@ -1,0 +1,19 @@
+[Unit]
+Description=CPU steal time monitor
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/stealmon.sh
+Restart=always
+RestartSec=5
+Environment=INTERVAL_SECONDS=5
+Environment=LOG_DIR=/var/log/stealmon
+Environment=MAX_LOG_SIZE_BYTES=10485760
+Environment=RETENTION_FILES=5
+Environment=CPU_MODE=all
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
